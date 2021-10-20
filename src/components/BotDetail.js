@@ -19,7 +19,7 @@ function BotDetail(props){
                     <div className="bot-desc">
                         <h1>{botObject.bot}</h1>
                         <p>{botObject.description}</p>
-                        moderate risk<br></br>
+                        
                         <div className="btns">
                              <button onClick={addtocartFn}>buy</button>
                         </div>
