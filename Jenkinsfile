@@ -1,10 +1,23 @@
-node {
-    checkout scm
-
-    docker.withRegistry('https://registry.hub.docker.com/', 'dockerHub') {
-
-        def customImage = docker.build("samshatran/image-built-from-jenkins")
-
-        customImage.push()
-    }
-}
+node {    
+      def app     
+      stage('Clone repository') {               
+             
+            checkout scm    
+      }     
+      stage('Build image') {         
+       
+            app = docker.build("samsharan/built-from-jenkins")    
+       }     
+      stage('Test image') {           
+            app.inside {            
+             
+             sh 'echo "Tests passed"'        
+            }    
+        }     
+       stage('Push image') {
+                                                  docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {            
+       app.push("${env.BUILD_NUMBER}")            
+       app.push("latest")        
+              }    
+           }
+        }
