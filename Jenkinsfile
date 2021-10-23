@@ -1,7 +1,7 @@
 node {
     checkout scm
 
-    docker.withRegistry('https://registry.hub.docker.com/', 'samsharan/@Pls0opeen') {
+    docker.withRegistry('https://registry.hub.docker.com/', 'samsharan') {
 
         def customImage = docker.build("samshatran/image-built-from-jenkins")
 
