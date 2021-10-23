@@ -1,4 +1,9 @@
-node {    
+node {   
+      environment {
+
+    PATH = "C:\\WINDOWS\\SYSTEM32"
+
+}
       def app     
       stage('Clone repository') {               
              
