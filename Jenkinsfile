@@ -7,6 +7,6 @@ node {
       }     
 
       stage('Test image') {           
-            npm test
+            sh 'npm test'
         }     
 }
