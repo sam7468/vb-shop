@@ -6,7 +6,3 @@ services:
       - "3000:3000"
       
       
- volumes:
-      -v /var/run/docker.sock:/var/run/docker.sock
-      -v /usr/local/bin/docker:/usr/bin/docker
-      
