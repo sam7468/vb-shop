@@ -6,7 +6,7 @@ node {
             checkout scm    
       }    
       stage('Test image') {           
-             sh 'echo "Tests passed"'         
+             bat 'echo "Tests passed"'         
         }     
       stage('Build image') {         
        
