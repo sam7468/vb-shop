@@ -11,10 +11,12 @@ node {
             app = docker.build("samsharan/built-from-jenkins")    
        }   
       
-      stage('Test image') {           
+      stage('Test image') {
+            dir("/") {
             app.inside {            
              bat 'echo "Tests passed"'        
-            }    
+            }
+            }
         } 
 
        stage('Push image') {
