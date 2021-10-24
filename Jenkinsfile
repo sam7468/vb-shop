@@ -14,9 +14,7 @@ node {
       stage('Test image') {
             
             app.inside { 
-                  dir("/") {
                         bat 'echo "Tests passed"'        
-                            }
                         }
         } 
 
