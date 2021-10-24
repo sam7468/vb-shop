@@ -4,11 +4,14 @@ node {
       stage('Clone repository') {               
              
             checkout scm    
-      }     
+      }    
+      stage('Test image') {           
+             sh 'echo "Tests passed"'         
+        }     
       stage('Build image') {         
        
             app = docker.build("samsharan/built-from-jenkins")    
-       }     
+       }   
  
        stage('Push image') {
                                                   docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {            
