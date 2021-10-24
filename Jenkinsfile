@@ -12,11 +12,12 @@ node {
        }   
       
       stage('Test image') {
-            dir("/") {
-            app.inside {            
-             bat 'echo "Tests passed"'        
-            }
-            }
+            
+            app.inside { 
+                  dir("/") {
+                        bat 'echo "Tests passed"'        
+                            }
+                        }
         } 
 
        stage('Push image') {
