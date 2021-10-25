@@ -1,34 +1,31 @@
-node {   
-
-      def app     
-      
-      stage('Initialize'){
-        
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-      }
-      
-      stage('Clone repository') {               
-             
-            checkout scm    
-      }
-      
-      stage('Build image') {         
-       
-            app = docker.build("samsharan/built-from-jenkins")    
-       }   
-      
-      stage('Test image') {
-            
-            app.inside { 
-                        bat 'echo "Tests passed"'        
-                        }
-        } 
-
-       stage('Push image') {
-                                                  docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {            
-       app.push("${env.BUILD_NUMBER}")            
-       app.push("latest")        
-              }    
-           }
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
         }
+    }
+     environment {
+            CI = 'true'
+        }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+                    steps {
+                        sh 'npm test'
+                    }
+                }
+                stage('Deliver') {
+                            steps {
+                                sh './jenkins/scripts/deliver.sh'
+                                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                                sh './jenkins/scripts/kill.sh'
+                            }
+                        }
+
+    }
+}
