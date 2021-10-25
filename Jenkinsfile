@@ -15,7 +15,7 @@ node {
       
       stage('Build image') {         
        
-            app = docker.build("samsharan/built-from-jenkins")    
+            app = docker.build("samsharan/built-by-jenkins")    
        }   
       
 
