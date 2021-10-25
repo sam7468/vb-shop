@@ -8,6 +8,11 @@ node {
             checkout scm    
       }
       
+      stage('test image') {         
+       
+            bat 'echo "dummy test passed!"'    
+       }   
+      
       stage('Build image') {         
        
             app = docker.build("samsharan/built-from-jenkins")    
